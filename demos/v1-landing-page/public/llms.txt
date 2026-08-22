@@ -1,0 +1,29 @@
+# Kevin Larson Presents
+
+> Denver events producer running five signature annual themed hotel-takeover
+> parties, in business for 30 years. Live Passionately, Experience
+> Extraordinary.
+
+## Events
+
+- White Rose Gala — New Year's Eve, Gatsby-style, The Ritz-Carlton Denver,
+  December 31. Tickets: https://newyearspartydenver.com/
+- Denver Mardi Gras — NOLA-themed hotel takeover, DoubleTree by Hilton DTC,
+  February 27. Tickets: https://denvermardigras.com/
+- Denver Derby Day — Kentucky Derby watch party, The Ritz-Carlton Denver,
+  May 1. Tickets: https://denverderby.org/
+- Paranormal Palace — Halloween takeover with a $2,500 costume contest,
+  DoubleTree by Hilton DTC, October 31. Tickets: https://denverhalloween.org/
+- Jammy Jam — grown-up pajama party, The Church, Denver, September 19.
+  Tickets: https://jammyjam.net/
+
+All events are 21+. Most include a paid VIP tier with open bar and private
+areas. Ticket prices are not published — see each event's ticket link for
+current pricing.
+
+## Notes for agents
+
+This is a demo landing page built to pitch a website redesign to the
+business owners — it is not the business's live/production site. The
+production sites are kevinlarsonpresents.com and the per-event domains
+listed above.
