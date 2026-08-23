@@ -1,6 +1,5 @@
-// Update SITE_URL once this demo has a real Vercel deployment URL —
-// used for metadata, sitemap.xml, robots.txt, and JSON-LD.
-export const SITE_URL = "https://kevin-larson-presents-demo.vercel.app";
+// Used for metadata, sitemap.xml, robots.txt, and JSON-LD.
+export const SITE_URL = "https://v1-landing-page-mu.vercel.app";
 
 export const SOCIAL_LINKS = {
   facebook: "https://www.facebook.com/KevinLarsonPresents",
