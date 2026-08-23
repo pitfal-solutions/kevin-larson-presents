@@ -9,19 +9,19 @@
   target deliverable.
 - Documented in [context/](context/) and [customers/](customers/).
 
-## Phase 1 — v1 demo landing page (current)
+## Phase 1 — v1 demo (done, 2026-08-22)
 
-Single-page, high-end demo built from real KLP content — see
-[specs/v1-landing-page.md](specs/v1-landing-page.md). Goal: a link the
-client can open and immediately see as a step up from what they have.
-Placeholder image slots until real event photos arrive.
-
-**Blocked on:** client sending real event photos (location TBD — see
-[REVIEW.md](REVIEW.md)).
+High-end demo built from real KLP content, deployed and live — see
+[specs/v1-landing-page.md](specs/v1-landing-page.md). Homepage with a
+real-photo hero + event grid + gallery, plus a dedicated page per event
+(`/events/<slug>`) with its own photo gallery. Real event photography for
+4 of 5 events (Jammy Jam correctly still placeholder — hasn't happened).
+Live at https://v1-landing-page-mu.vercel.app, GitHub-connected for
+auto-deploy on push.
 
 ## Phase 2 — Real content + AI/SEO structure
 
-- Swap in real photos once provided.
+- Swap in Jammy Jam photos once the event happens.
 - Decide the domain-consolidation strategy (6 domains → 1, or keep
   microsites and cross-link) — this is a client decision, not ours to
   assume. See [context/ai-discoverability.md](context/ai-discoverability.md).
@@ -41,5 +41,6 @@ Placeholder image slots until real event photos arrive.
 
 ---
 
-**Current phase: 1.** Next concrete step: get real event photos from the
-client, then build the demo in [demos/v1-landing-page/](demos/README.md).
+**Current phase: 1 (done), moving into 2.** Demo is live — see
+[demos/v1-landing-page/](demos/README.md). Next concrete step: client
+review of the live demo, then decide on Phase 2 scope.

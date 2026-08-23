@@ -18,15 +18,39 @@ restrictions, what's included at each tier (GA vs VIP), taglines, social
 media handles (Facebook, TikTok, Instagram, YouTube), font choices, color
 values.
 
+## Event photography (added 2026-08-22)
+
+Client provided access to real event photos at
+`/Volumes/Elements/pitfal-solutions/photo_backup/events` — every subfolder
+containing `Kevin_Larson` is fair game. Folders found (raw camera files,
+~30MB each, not touched or moved):
+
+| Folder | Event | Used? |
+|---|---|---|
+| Kevin_Larson_2026_New_Years (242 photos) | White Rose Gala | Yes — most recent |
+| Kevin_Larson_2025_Mardi_Gras (79 photos) | Denver Mardi Gras | Yes — most recent |
+| Kevin_Larson_2024_Kentucky_Derby (263 photos) | Denver Derby Day | Yes — most recent available (no 2025/2026 folder exists) |
+| Kevin_Larson_2025_Paranormal_Palace (111 photos, 3 subfolders) | Paranormal Palace | Yes — most recent |
+| Kevin_Larson_2023/2024 duplicates of the above | — | No — superseded by the most recent year |
+| Kevin_Larson_2024_Naughty_Ball (123 photos) | Not a current-site event | No — client confirmed leave it out; not one of the 5 signature nights |
+| (none) | Jammy Jam | No photos exist — event hasn't happened yet (Sept 2026) |
+
+For each of the 4 events with photos: hand-reviewed a ~12-photo sample
+spread across the shoot, picked 8 (1 hero + 7 gallery), resized to 1800px
+wide / ~75% JPEG quality for web (originals are 6500×4356, ~30MB each —
+untouched on the source drive). Curation leaned toward photos that read
+well on a public marketing page — skipped anything with a recognizable
+copyrighted costume character (a Pennywise cosplay) or anything overtly
+risqué, even though authentic to the event's real energy, since this page
+represents the brand rather than one attendee's night.
+
 ## What's still missing (treat as `null`, never invented)
 
 - **Exact ticket prices.** None of the live sites publish numeric pricing —
   they link out to Ticketfairy/Eventbrite. v1 demo copy should say "See
   pricing" / link out, not invent a number.
-- **Real event photos.** Client confirmed real photos/video exist and will
-  be provided. Until then, the demo uses clearly-labeled placeholder image
-  slots — see [../specs/v1-landing-page.md](../specs/v1-landing-page.md). Do
-  not source stock photos that could be mistaken for real KLP event photos.
+- **Jammy Jam photos.** Honest placeholder stays until the event happens —
+  see [../specs/v1-landing-page.md](../specs/v1-landing-page.md).
 - **Which past events to feature and testimonials/reviews** — not on the
   current site; ask the client before adding anything that reads as social
   proof.

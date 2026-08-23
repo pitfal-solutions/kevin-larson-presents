@@ -2,6 +2,11 @@
 // See /context/data-sources.md in the repo root for provenance.
 // Ticket prices are never invented here — every event links out to its
 // real ticketing page instead.
+//
+// Photos in public/images/events/<slug>/ are real KLP event photography,
+// provided by the client from /Volumes/Elements/pitfal-solutions/photo_backup
+// (2026-08-22), resized/compressed for web from the original camera files.
+// Jammy Jam has no photos yet — it hasn't happened (Sept 2026).
 
 export const events = [
   {
@@ -22,6 +27,17 @@ export const events = [
       "Hotel takeover — ride the elevator home",
     ],
     ticketUrl: "https://newyearspartydenver.com/",
+    hasPhotos: true,
+    photoCaption: "White Rose Gala, New Year's Eve 2026",
+    gallery: [
+      { file: "g1.jpg", alt: "Crowd cheering under a lit 2026 sign at the White Rose Gala" },
+      { file: "g2.jpg", alt: "Couple in gold sequin glam at the White Rose Gala" },
+      { file: "g3.jpg", alt: "Couple in 1920s flapper-style formalwear" },
+      { file: "g4.jpg", alt: "Upright bassist performing on stage" },
+      { file: "g5.jpg", alt: "Guests embracing on the dance floor under purple lighting" },
+      { file: "g6.jpg", alt: "Guests in 1920s-style formalwear posing together" },
+      { file: "g7.jpg", alt: "Guest in elaborate performance makeup and costume" },
+    ],
   },
   {
     slug: "denver-mardi-gras",
@@ -41,6 +57,17 @@ export const events = [
       "Discounted hotel rooms — atrium rooms sell out every year",
     ],
     ticketUrl: "https://denvermardigras.com/",
+    hasPhotos: true,
+    photoCaption: "Denver Mardi Gras 2025",
+    gallery: [
+      { file: "g1.jpg", alt: "Group of guests in gold and green Mardi Gras glam" },
+      { file: "g2.jpg", alt: "Horn section performing live at Denver Mardi Gras" },
+      { file: "g3.jpg", alt: "Guest with colorful hair extensions dancing" },
+      { file: "g4.jpg", alt: "Crowd in masks under neon lighting" },
+      { file: "g5.jpg", alt: "Performer in a sequin jacket and star cap" },
+      { file: "g6.jpg", alt: "Couple in gold masquerade masks" },
+      { file: "g7.jpg", alt: "Guest in a red sequin lobster headpiece" },
+    ],
   },
   {
     slug: "denver-derby-day",
@@ -60,6 +87,17 @@ export const events = [
       "After Party (5–8 PM) included with admission",
     ],
     ticketUrl: "https://denverderby.org/",
+    hasPhotos: true,
+    photoCaption: "Denver Derby Day 2024",
+    gallery: [
+      { file: "g1.jpg", alt: "Large group of guests in Derby Day fashion" },
+      { file: "g2.jpg", alt: "Three guests in colorful Derby dresses and fascinators" },
+      { file: "g3.jpg", alt: "Two guests in pink feather fascinators" },
+      { file: "g4.jpg", alt: "Couple in Derby hats posing together" },
+      { file: "g5.jpg", alt: "Guest with a floral fascinator and toy horse" },
+      { file: "g6.jpg", alt: "Guests taking a selfie in Derby fascinators" },
+      { file: "g7.jpg", alt: "Couple watching the race, pointing at the screen" },
+    ],
   },
   {
     slug: "paranormal-palace",
@@ -79,6 +117,17 @@ export const events = [
       "VIP: four exclusive zones, private bars, table reservations",
     ],
     ticketUrl: "https://denverhalloween.org/",
+    hasPhotos: true,
+    photoCaption: "Paranormal Palace 2025",
+    gallery: [
+      { file: "g1.jpg", alt: "Performer in dramatic skeleton body paint" },
+      { file: "g2.jpg", alt: "Packed dance floor with a DJ performing" },
+      { file: "g3.jpg", alt: "Two performers in elaborate creature masks" },
+      { file: "g4.jpg", alt: "Performer in dramatic gothic stage makeup" },
+      { file: "g5.jpg", alt: "DJ mixing at Paranormal Palace" },
+      { file: "g6.jpg", alt: "Guest in a Día de los Muertos bridal costume" },
+      { file: "g7.jpg", alt: "Couple embracing in costume at Paranormal Palace" },
+    ],
   },
   {
     slug: "jammy-jam",
@@ -98,5 +147,19 @@ export const events = [
       "Matching pajamas encouraged — come cozy, come glamorous",
     ],
     ticketUrl: "https://jammyjam.net/",
+    hasPhotos: false,
+    gallery: [],
   },
 ];
+
+export function getEvent(slug) {
+  return events.find((e) => e.slug === slug);
+}
+
+export function heroImagePath(event) {
+  return `/images/events/${event.slug}/hero.jpg`;
+}
+
+export function galleryImagePath(event, file) {
+  return `/images/events/${event.slug}/${file}`;
+}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function formatMonthDay(dateStr) {
   const d = new Date(`${dateStr}T00:00:00`);
   return {
@@ -11,12 +13,26 @@ export default function EventCard({ event }) {
 
   return (
     <article className="event-card">
-      <div className="event-card__date" aria-hidden="true">
-        <span className="event-card__month">{month}</span>
-        <span className="event-card__day">{day}</span>
-      </div>
-      <div className="event-card__body">
+      <Link href={`/events/${event.slug}`} className="event-card__photo">
+        {event.hasPhotos ? (
+          <img
+            src={`/images/events/${event.slug}/hero.jpg`}
+            alt={`${event.name} — ${event.theme}`}
+            loading="lazy"
+          />
+        ) : (
+          <div className="event-card__photo-placeholder">
+            <span>Photos coming soon</span>
+          </div>
+        )}
+        <div className="event-card__photo-scrim" />
+        <div className="event-card__date" aria-hidden="true">
+          <span className="event-card__month">{month}</span>
+          <span className="event-card__day">{day}</span>
+        </div>
         <h3 className="event-card__name">{event.name}</h3>
+      </Link>
+      <div className="event-card__body">
         <p className="event-card__theme">{event.theme}</p>
         <p className="event-card__tagline">&ldquo;{event.tagline}&rdquo;</p>
         <dl className="event-card__meta">
@@ -40,14 +56,19 @@ export default function EventCard({ event }) {
             <li key={h}>{h}</li>
           ))}
         </ul>
-        <a
-          href={event.ticketUrl}
-          className="btn btn--primary btn--small"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          See Tickets
-        </a>
+        <div className="event-card__actions">
+          <Link href={`/events/${event.slug}`} className="btn btn--ghost btn--small">
+            See the Night
+          </Link>
+          <a
+            href={event.ticketUrl}
+            className="btn btn--primary btn--small"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            See Tickets
+          </a>
+        </div>
       </div>
     </article>
   );

@@ -33,11 +33,13 @@ export const metadata = {
     siteName: "Kevin Larson Presents",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/images/events/white-rose-gala/hero.jpg" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kevin Larson Presents | Denver's Signature Themed Events",
     description,
+    images: ["/images/events/white-rose-gala/hero.jpg"],
   },
 };
 

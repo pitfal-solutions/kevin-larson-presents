@@ -90,3 +90,52 @@ links. Added `robots.txt`, `sitemap.xml`, and `llms.txt` per
 - **Not yet deployed.** No Vercel CLI available in this environment and
   deploying requires the client/user's own Vercel login — flagged as the
   next concrete step rather than done silently.
+
+### 2026-08-22 — Deployed to Vercel
+
+Installed the Vercel CLI (user gave explicit permission) and deployed.
+Authentication resolved on its own via an already-signed-in session in
+this environment — no credential ever passed through the assistant, in
+line with the hard rule against handling passwords/tokens even with
+permission granted. Live at https://v1-landing-page-mu.vercel.app; GitHub
+repo connected for auto-deploy on future pushes to `main`. `SITE_URL` in
+`site-config.js` updated to match, confirmed live in OpenGraph tags,
+sitemap.xml, and JSON-LD.
+
+### 2026-08-22 — Real event photography + individual event pages
+
+User felt the v1 demo looked "boring and generic" and asked for (1) a much
+stronger visual pass on the homepage and (2) a dedicated page per event
+(mirroring the 5 real subdomains), using real photos from
+`/Volumes/Elements/pitfal-solutions/photo_backup/events`. See
+[context/data-sources.md](context/data-sources.md) for exactly which
+photos were used and why.
+
+Decisions made (confirmed with user via AskUserQuestion before building):
+
+- **Jammy Jam keeps an honest placeholder** rather than borrowing another
+  event's photos — it hasn't happened yet (Sept 2026). Same data-honesty
+  principle as everywhere else in this workspace, now applied to imagery.
+- **Left out the "Naughty Ball" 2024 photo folder** found alongside the
+  others — it's not one of the 5 signature events currently on the live
+  site, and the user confirmed to leave it out rather than assume it
+  should become a 6th page.
+- **Curated rather than dumped** the photo folders (79–351 photos each) —
+  hand-reviewed a sampled subset per event and picked 8 each, favoring
+  photos that read well on a public marketing page over ones that were
+  merely authentic to the (21+, sometimes risqué) event energy. Skipped
+  one shot that was a recognizable copyrighted costume (Pennywise) to
+  avoid any IP association with the brand.
+- **Event pages live at `/events/<slug>`** within this same Next.js app
+  (not separate deployments) — reasonable for a demo; a real domain
+  migration strategy is still a Phase 2 decision, not decided here.
+
+Build verified clean (`npm run build`). Visually verified at desktop and
+mobile widths for both the homepage and an event page — this time using a
+workaround (temporarily overriding the hero's height via injected CSS to
+avoid needing to scroll) after confirming the browser tool's native
+scroll gesture was still unreliable in this session. Real photos, photo
+cards, mosaic galleries, and the Jammy Jam placeholder all confirmed
+rendering correctly, no layout bugs found beyond one minor CSS fix (the
+past-events gallery's last row was left-stuck when partially filled —
+switched to fixed-width tiles with `justify-content: center`).

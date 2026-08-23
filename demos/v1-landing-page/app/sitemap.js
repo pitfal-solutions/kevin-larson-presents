@@ -1,4 +1,5 @@
 import { SITE_URL } from "./site-config";
+import { events } from "./events-data";
 
 export default function sitemap() {
   return [
@@ -7,5 +8,10 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...events.map((e) => ({
+      url: `${SITE_URL}/events/${e.slug}`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    })),
   ];
 }
