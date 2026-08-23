@@ -19,7 +19,7 @@ export default function EventGallery({ event }) {
           <img
             className="event-gallery-grid__hero"
             src={`/images/events/${event.slug}/hero.jpg`}
-            alt={`${event.name} — ${event.theme}`}
+            alt={event.heroAlt || `${event.name} — ${event.theme}`}
             loading="lazy"
           />
           {event.gallery.map((g) => (

@@ -29,6 +29,7 @@ export const events = [
     ticketUrl: "https://newyearspartydenver.com/",
     hasPhotos: true,
     photoCaption: "White Rose Gala, New Year's Eve 2026",
+    heroAlt: "A packed dance floor with hands raised under dramatic lighting at the White Rose Gala",
     gallery: [
       { file: "g1.jpg", alt: "Crowd cheering under a lit 2026 sign at the White Rose Gala" },
       { file: "g2.jpg", alt: "Couple in gold sequin glam at the White Rose Gala" },
@@ -37,6 +38,8 @@ export const events = [
       { file: "g5.jpg", alt: "Guests embracing on the dance floor under purple lighting" },
       { file: "g6.jpg", alt: "Guests in 1920s-style formalwear posing together" },
       { file: "g7.jpg", alt: "Guest in elaborate performance makeup and costume" },
+      { file: "g8.jpg", alt: "Guests in gold gowns under the White Rose Gala sign" },
+      { file: "g9.jpg", alt: "Guests dancing on a crowded floor at the White Rose Gala" },
     ],
   },
   {
@@ -59,6 +62,7 @@ export const events = [
     ticketUrl: "https://denvermardigras.com/",
     hasPhotos: true,
     photoCaption: "Denver Mardi Gras 2025",
+    heroAlt: "A packed, colorful crowd filling the room at Denver Mardi Gras",
     gallery: [
       { file: "g1.jpg", alt: "Group of guests in gold and green Mardi Gras glam" },
       { file: "g2.jpg", alt: "Horn section performing live at Denver Mardi Gras" },
@@ -67,6 +71,8 @@ export const events = [
       { file: "g5.jpg", alt: "Performer in a sequin jacket and star cap" },
       { file: "g6.jpg", alt: "Couple in gold masquerade masks" },
       { file: "g7.jpg", alt: "Guest in a red sequin lobster headpiece" },
+      { file: "g8.jpg", alt: "Three guests in masks and Mardi Gras glam" },
+      { file: "g9.jpg", alt: "Brass band performing over a packed crowd" },
     ],
   },
   {
@@ -89,6 +95,7 @@ export const events = [
     ticketUrl: "https://denverderby.org/",
     hasPhotos: true,
     photoCaption: "Denver Derby Day 2024",
+    heroAlt: "A packed street full of guests in Derby Day fashion",
     gallery: [
       { file: "g1.jpg", alt: "Large group of guests in Derby Day fashion" },
       { file: "g2.jpg", alt: "Three guests in colorful Derby dresses and fascinators" },
@@ -97,6 +104,8 @@ export const events = [
       { file: "g5.jpg", alt: "Guest with a floral fascinator and toy horse" },
       { file: "g6.jpg", alt: "Guests taking a selfie in Derby fascinators" },
       { file: "g7.jpg", alt: "Couple watching the race, pointing at the screen" },
+      { file: "g8.jpg", alt: "Guest reacting to the race on the big screen at Denver Derby Day" },
+      { file: "g9.jpg", alt: "Three friends in Derby fashion posing together" },
     ],
   },
   {
@@ -119,14 +128,15 @@ export const events = [
     ticketUrl: "https://denverhalloween.org/",
     hasPhotos: true,
     photoCaption: "Paranormal Palace 2025",
+    heroAlt: "A DJ overlooking a packed, multi-level dance floor at Paranormal Palace",
     gallery: [
       { file: "g1.jpg", alt: "Performer in dramatic skeleton body paint" },
-      { file: "g2.jpg", alt: "Packed dance floor with a DJ performing" },
       { file: "g3.jpg", alt: "Two performers in elaborate creature masks" },
       { file: "g4.jpg", alt: "Performer in dramatic gothic stage makeup" },
       { file: "g5.jpg", alt: "DJ mixing at Paranormal Palace" },
       { file: "g6.jpg", alt: "Guest in a Día de los Muertos bridal costume" },
       { file: "g7.jpg", alt: "Couple embracing in costume at Paranormal Palace" },
+      { file: "g8.jpg", alt: "Performer in dramatic devil horns and red lighting" },
     ],
   },
   {

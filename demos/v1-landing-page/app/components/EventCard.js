@@ -17,7 +17,7 @@ export default function EventCard({ event }) {
         {event.hasPhotos ? (
           <img
             src={`/images/events/${event.slug}/hero.jpg`}
-            alt={`${event.name} — ${event.theme}`}
+            alt={event.heroAlt || `${event.name} — ${event.theme}`}
             loading="lazy"
           />
         ) : (

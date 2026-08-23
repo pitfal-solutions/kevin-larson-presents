@@ -16,7 +16,7 @@ export default function MoreEvents({ excludeSlug }) {
             {e.hasPhotos ? (
               <img
                 src={`/images/events/${e.slug}/hero.jpg`}
-                alt={`${e.name} — ${e.theme}`}
+                alt={e.heroAlt || `${e.name} — ${e.theme}`}
                 loading="lazy"
               />
             ) : (
