@@ -8,17 +8,20 @@ history.
 Before marking any demo/deliverable shippable (i.e., ready to send the
 client a link):
 
-- [ ] All event details (name, date, venue, tagline) match the live
+- [x] All event details (name, date, venue, tagline) match the live
       microsite they came from — no drift, no invention.
-- [ ] No fabricated pricing, testimonials, or attendance numbers.
-- [ ] Placeholder images are visually/labeled distinct from real photos —
+- [x] No fabricated pricing, testimonials, or attendance numbers.
+- [x] Placeholder images are visually/labeled distinct from real photos —
       never presentable as authentic KLP photography.
-- [ ] Checked at a desktop width and a phone width.
-- [ ] `npm run build` passes clean.
-- [ ] Social links point to the real KLP accounts (Facebook, TikTok,
+- [x] Checked at a desktop width and a phone width.
+- [x] `npm run build` passes clean.
+- [x] Social links point to the real KLP accounts (Facebook, TikTok,
       Instagram, YouTube), not placeholders.
-- [ ] JSON-LD `Event` blocks validate (name/date/location/offer present)
+- [x] JSON-LD `Event` blocks validate (name/date/location/offer present)
       for all events actually shown.
+
+*(Checked off 2026-08-23 — v1 demo sent to the client. Re-verify before
+sending any future revision.)*
 
 ## Log
 
@@ -191,3 +194,45 @@ surfaced a few things worth a checkpoint:
 Build verified clean. Visually verified at desktop and mobile for both
 the homepage (all-new sections included) and the About page using the
 same hero-height-override workaround as the previous entry.
+
+### 2026-08-23 — Two rounds of mobile polish, then shipped
+
+- **Scroll cue redesign.** User didn't like the "pill with a sliding dot"
+  mouse-style scroll indicator. Replaced with a double down-chevron. Fixing
+  it surfaced a real bug: the hero's `100vh` never accounted for the
+  sticky header sitting above it in normal flow, so the hero (and the cue
+  with it) always extended ~80px past the actual first screen. Fixed with
+  `min-height: calc(100vh - 80px)`.
+- **Mobile hamburger nav.** Mobile had no way to reach `/about`, Past
+  Events, or Members Club — the nav was just hidden below 768px with
+  nothing replacing it. Added a hamburger button (animates to an X) that
+  opens a full-width dropdown nav.
+- **Two more real bugs, not just polish**, both from a single user report
+  ("gallery images have a lot of unused space" + "hero has too much dead
+  space on mobile"):
+  - `<figure>` was never reset from the browser's default UA margin
+    (`1em 40px`), silently shrinking every gallery tile to about half its
+    actual grid-cell width. This was likely also quietly shrinking the
+    desktop gallery, just less noticeably. Root-caused by comparing
+    `getBoundingClientRect()` on the tile against the grid's own
+    `computedStyle().gridTemplateColumns` — the numbers only made sense
+    once the arithmetic matched a hidden 80px margin exactly.
+  - The hero's forced `min-height` (see above) left ~200px of dead space
+    on mobile between the hero buttons and the next section, since mobile
+    content is much shorter than the enforced full-screen minimum. Hero
+    now hugs its content on mobile (`min-height: auto`) instead of forcing
+    viewport height — the scroll cue is already hidden on mobile, so there
+    was no reason to force full height there anyway.
+  - Also switched the past-events gallery to 2 columns on mobile instead
+    of 1 (separate, smaller ask, same round).
+
+All four fixes verified against direct DOM measurements (grid column
+width vs. actual tile width, hero height vs. viewport) rather than just
+eyeballing screenshots, after the gallery bug turned out to be invisible
+without measuring.
+
+**Demo sent to the client 2026-08-23.** ROADMAP.md updated: Phase 1 marked
+done/sent, pre-ship checklist checked off, and a new "Pricing plan for
+website projects" item added — not a coding task, but flagged so it gets
+answered before a prospective customer says yes and the client needs
+real numbers on the spot.
