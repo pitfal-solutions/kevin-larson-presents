@@ -2,7 +2,10 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import EventsGrid from "./components/EventsGrid";
 import PastEvents from "./components/PastEvents";
+import VideoSection from "./components/VideoSection";
+import PressMarquee from "./components/PressMarquee";
 import Membership from "./components/Membership";
+import Reviews from "./components/Reviews";
 import Footer from "./components/Footer";
 import { events } from "./events-data";
 import { SITE_URL } from "./site-config";
@@ -52,7 +55,10 @@ export default function Home() {
         <Hero />
         <EventsGrid />
         <PastEvents />
+        <VideoSection />
+        <PressMarquee />
         <Membership />
+        <Reviews />
       </main>
       <Footer />
     </>

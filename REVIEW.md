@@ -139,3 +139,55 @@ cards, mosaic galleries, and the Jammy Jam placeholder all confirmed
 rendering correctly, no layout bugs found beyond one minor CSS fix (the
 past-events gallery's last row was left-stuck when partially filled —
 switched to fixed-width tiles with `justify-content: center`).
+
+### 2026-08-23 — Hero photos, About page, reviews, posters, video
+
+Two rounds of feedback in the same session:
+
+**"Heroes don't showcase the crowd/vibe."** The first hero picks were
+flattering close-up portraits, not wide shots. Went back into the photo
+folders specifically hunting for packed-room/crowd energy shots, found
+much stronger ones (dance floor with hands up, a wide plaza full of Derby
+hats, a DJ overlooking a two-story crowd), and swapped all 4 heroes —
+demoting the old portrait heroes into their event's gallery rather than
+discarding them. Also caught and fixed a real mislabeling bug in my own
+process: I'd mismatched a filename during review and the Derby hero was
+briefly the wrong photo (a 3-person portrait, not the wide crowd shot) —
+found it by directly re-verifying the file on disk rather than trusting
+my earlier notes, a good reminder to verify against the source rather
+than memory when something looks off.
+
+**About page + reviews + posters + video.** User asked for an About page
+mirroring the live site's "Shoutout Colorado" and "Meet the Visionary"
+sections, real reviews worked into the homepage with an animated
+treatment, the real YouTube video, and the real per-event poster images
+(matching a URL the user pasted) back into the event cards. Sourcing this
+surfaced a few things worth a checkpoint:
+
+- **The user's memory of a "reviews" section didn't match reality.** Their
+  own homepage carousel (screenshots literally named
+  `Screenshot-2025-07-10-...`) turned out to be an "As Seen In" press-logo
+  slide and a client-roster slide — not testimonials — and 2 of its 4
+  images are broken (404) on their live site today. Flagged this
+  explicitly via AskUserQuestion rather than building a fabricated
+  "reviews" section from a mistaken premise; user chose to use the real
+  press/client content for the animated piece and asked for a genuine
+  Google-reviews section added separately, which required going out to
+  find their actual Google review data (via Birdeye's public aggregation,
+  since Google doesn't offer a free self-service embed) — real quotes,
+  real names, real 4.1★/41-review aggregate, not invented.
+- **Traced "Meet The Visionary" back to its real source.** The image used
+  in that section on their homepage is literally a screenshot of Kevin
+  Larson's real Shoutout Colorado interview — confirms the user's ask was
+  grounded in something real, not misremembered. Used a short attributed
+  quote + link to the original rather than reproducing that screenshot
+  (which would mean reproducing another publication's page design, not
+  just KLP's own content) or the full article text.
+- **Poster images required a workaround.** The CDN hosting KLP's real
+  poster images (exactdn) blocks direct `curl` (referer/auth check).
+  Fetched them via an in-browser canvas render instead — legitimate,
+  same content, just needed the actual browser context.
+
+Build verified clean. Visually verified at desktop and mobile for both
+the homepage (all-new sections included) and the About page using the
+same hero-height-override workaround as the previous entry.

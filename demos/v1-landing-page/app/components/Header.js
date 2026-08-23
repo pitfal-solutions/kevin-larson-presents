@@ -13,6 +13,7 @@ export default function Header() {
         <nav className="site-nav" aria-label="Primary">
           <Link href="/#events">Events</Link>
           <Link href="/#past-events">Past Events</Link>
+          <Link href="/about">About</Link>
           <Link href="/#join">Members Club</Link>
         </nav>
         <Link href="/#events" className="btn btn--ghost site-header__cta">

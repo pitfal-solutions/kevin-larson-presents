@@ -1,38 +1,17 @@
 import Link from "next/link";
 
-function formatMonthDay(dateStr) {
-  const d = new Date(`${dateStr}T00:00:00`);
-  return {
-    month: d.toLocaleDateString("en-US", { month: "short" }).toUpperCase(),
-    day: d.toLocaleDateString("en-US", { day: "numeric" }),
-  };
-}
-
 export default function EventCard({ event }) {
-  const { month, day } = formatMonthDay(event.date);
-
   return (
     <article className="event-card">
-      <Link href={`/events/${event.slug}`} className="event-card__photo">
-        {event.hasPhotos ? (
-          <img
-            src={`/images/events/${event.slug}/hero.jpg`}
-            alt={event.heroAlt || `${event.name} — ${event.theme}`}
-            loading="lazy"
-          />
-        ) : (
-          <div className="event-card__photo-placeholder">
-            <span>Photos coming soon</span>
-          </div>
-        )}
-        <div className="event-card__photo-scrim" />
-        <div className="event-card__date" aria-hidden="true">
-          <span className="event-card__month">{month}</span>
-          <span className="event-card__day">{day}</span>
-        </div>
-        <h3 className="event-card__name">{event.name}</h3>
+      <Link href={`/events/${event.slug}`} className="event-card__poster">
+        <img
+          src={`/images/events/${event.slug}/poster.jpg`}
+          alt={event.posterAlt || `${event.name} event poster`}
+          loading="lazy"
+        />
       </Link>
       <div className="event-card__body">
+        <h3 className="event-card__name">{event.name}</h3>
         <p className="event-card__theme">{event.theme}</p>
         <p className="event-card__tagline">&ldquo;{event.tagline}&rdquo;</p>
         <dl className="event-card__meta">

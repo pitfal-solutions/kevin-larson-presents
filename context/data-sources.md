@@ -44,16 +44,55 @@ copyrighted costume character (a Pennywise cosplay) or anything overtly
 risqué, even though authentic to the event's real energy, since this page
 represents the brand rather than one attendee's night.
 
+## About page + reviews + posters (added 2026-08-23)
+
+More real content pulled from kevinlarsonpresents.com and related sources:
+
+- **Event posters.** Each event's real marketing poster (e.g.
+  `.../wp-content/uploads/2026/07/white-rose-gala-2027.jpg`) pulled from the
+  live homepage's linked images — official artwork, not candid photography,
+  so used for all 5 events including Jammy Jam. Retrieved via an in-browser
+  canvas fetch (curl was blocked by the CDN's referer check) and resized to
+  500px wide.
+- **"Meet The Visionary"** copy — real text from the homepage section of
+  that name.
+- **"Shoutout Colorado"** — the homepage's visionary photo is literally a
+  screenshot of Kevin Larson's real interview at
+  shoutoutcolorado.com/meet-kevin-larson-the-joy-maker-the-bringer-of-dreams/
+  (published 2026-07-23). Used a short attributed excerpt + link to the full
+  piece, not a full reproduction — and did not reuse that screenshot image
+  itself, since it's a screenshot of another publication's page design, not
+  KLP's own asset.
+- **"Meet The Team"** — real names/titles from kevinlarsonpresents.com/about-us/:
+  Kevin Larson (CEO), Ryan Chipps (Producer/Lead Marketer), Holly Joy
+  (Producer/Entertainment).
+- **"As Seen In" / client roster** — real press mentions (E!, Denver Post,
+  A&E, Westword, Rocky Mountain News, 5280, Woman's Day, HBO, ABC, NBC,
+  CBS) and real client names (Four Seasons Hotel, Red Bull, Jim Beam, Aspen
+  Snowmass) from the homepage's credibility carousel. **Not** customer
+  reviews — flagged to the client that their own carousel labeled this
+  content as reviews-adjacent but it isn't, and 2 of its 4 slide images are
+  actually broken (404) on their live site right now.
+- **Google reviews** — real reviews (name, quote, aggregate 4.1★/41
+  reviews) sourced via Birdeye's public aggregation of the business's
+  Google listing, since Google's own review widget isn't self-service
+  embeddable. Quotes are verbatim from real reviewers, lightly trimmed for
+  length, never altered in meaning. Selected positive reviews for the demo
+  (standard testimonials-section practice) rather than a random sample —
+  the aggregate rating is shown alongside so it isn't misleadingly
+  cherry-picked.
+- **YouTube video** — real embed (`UoX8UOkA5Tg`) from the homepage's
+  existing video player.
+
 ## What's still missing (treat as `null`, never invented)
 
 - **Exact ticket prices.** None of the live sites publish numeric pricing —
   they link out to Ticketfairy/Eventbrite. v1 demo copy should say "See
   pricing" / link out, not invent a number.
-- **Jammy Jam photos.** Honest placeholder stays until the event happens —
-  see [../specs/v1-landing-page.md](../specs/v1-landing-page.md).
-- **Which past events to feature and testimonials/reviews** — not on the
-  current site; ask the client before adding anything that reads as social
-  proof.
+- **Jammy Jam event photography.** Honest placeholder stays in its gallery
+  until the event happens — see [../specs/v1-landing-page.md](../specs/v1-landing-page.md).
+  (It does now have a real marketing poster, which is a different thing —
+  see above.)
 
 ## Ground rule
 

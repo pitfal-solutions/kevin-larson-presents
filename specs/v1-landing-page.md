@@ -16,19 +16,36 @@ site (that's a future phase, contingent on them buying in).
    per event with photos), flame mark, "Live Passionately, Experience
    Extraordinary," 30-years positioning, primary CTA.
 2. **Signature events grid** — all 5 events (White Rose Gala, Denver Mardi
-   Gras, Denver Derby Day, Paranormal Palace/Halloween, Jammy Jam) as photo
-   cards: real hero photo, name, theme line, venue, date, an internal link
-   to the event's own page, and a "See tickets" link out. Real copy pulled
-   from each event's live microsite — see [../context/data-sources.md](../context/data-sources.md).
+   Gras, Denver Derby Day, Paranormal Palace/Halloween, Jammy Jam) as poster
+   cards: real event poster art, name, theme line, venue, date, an internal
+   link to the event's own page, and a "See tickets" link out. Real copy
+   pulled from each event's live microsite — see [../context/data-sources.md](../context/data-sources.md).
 3. **Past events / proof section** — real photo gallery pulled from the 4
    events with photography provided; Jammy Jam (hasn't happened yet) gets
    an honest labeled placeholder tile mixed in rather than hidden. Directly
    answers the client's stated pain point about not showcasing past events.
-4. **Membership / newsletter signup** — matches the "Members Club" concept
+4. **Watch the Vibe** — the real KLP recap video embedded from YouTube.
+5. **As Seen In & Trusted By** — animated marquee of real press mentions
+   and real client names pulled from the live site's credibility carousel.
+6. **Membership / newsletter signup** — matches the "Members Club" concept
    already on the live sites (visual only in the demo — no real email
    capture/backend in v1).
-5. **Footer** — social links (Facebook, TikTok, Instagram, YouTube — real,
+7. **What Denver Is Saying** — animated marquee of real Google reviews
+   (name, quote, aggregate rating), linking out to Google for the full set.
+8. **Footer** — social links (Facebook, TikTok, Instagram, YouTube — real,
    from the live site), brand tagline.
+
+**About page** (`/about`):
+
+1. Hero using a real event photo.
+2. **Meet The Visionary** — real copy from the live site's section of the
+   same name, plus a direct quote from Kevin Larson.
+3. **Shoutout Colorado** — a short attributed excerpt from Kevin Larson's
+   real published interview at shoutoutcolorado.com, with a link to the
+   full piece.
+4. **Meet The Team** — real names/titles (Kevin Larson, Ryan Chipps, Holly
+   Joy) from the live site's about-us page.
+5. The same "As Seen In & Trusted By" marquee as the homepage.
 
 **Individual event pages** (`/events/<slug>`), one per signature event:
 
@@ -60,7 +77,8 @@ instead of a substitute image.
 
 - No invented ticket prices — link out or say "See tickets," never a made-up
   number.
-- No invented testimonials, reviews, or attendance stats.
+- No invented testimonials, reviews, or attendance stats — reviews and
+  press mentions are real, sourced, and attributed (see data-sources.md).
 - Placeholder images/tiles are visually distinct (labeled) — never presented
   as if real.
 - All event details (dates, venues, taglines) sourced from the live

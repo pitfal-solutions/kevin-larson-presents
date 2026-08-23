@@ -13,19 +13,11 @@ export default function MoreEvents({ excludeSlug }) {
       <div className="more-events__grid">
         {others.map((e) => (
           <Link href={`/events/${e.slug}`} key={e.slug} className="more-events__card">
-            {e.hasPhotos ? (
-              <img
-                src={`/images/events/${e.slug}/hero.jpg`}
-                alt={e.heroAlt || `${e.name} — ${e.theme}`}
-                loading="lazy"
-              />
-            ) : (
-              <div className="event-card__photo-placeholder">
-                <span>Photos coming soon</span>
-              </div>
-            )}
-            <div className="more-events__scrim" />
-            <span className="more-events__name">{e.name}</span>
+            <img
+              src={`/images/events/${e.slug}/poster.jpg`}
+              alt={e.posterAlt || `${e.name} event poster`}
+              loading="lazy"
+            />
           </Link>
         ))}
       </div>
