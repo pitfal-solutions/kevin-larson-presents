@@ -15,14 +15,13 @@ site (that's a future phase, contingent on them buying in).
 1. **Hero** — full-bleed crossfading background of real event photos (one
    per event with photos), flame mark, "Live Passionately, Experience
    Extraordinary," 30-years positioning, primary CTA.
-2. **Signature events grid** — all 5 events (White Rose Gala, Denver Mardi
-   Gras, Denver Derby Day, Paranormal Palace/Halloween, Jammy Jam) as poster
+2. **Signature events grid** — all 4 events (White Rose Gala, Denver Mardi
+   Gras, Denver Derby Day, Paranormal Palace/Halloween) as poster
    cards: real event poster art, name, theme line, venue, date, an internal
    link to the event's own page, and a "See tickets" link out. Real copy
    pulled from each event's live microsite — see [../context/data-sources.md](../context/data-sources.md).
-3. **Past events / proof section** — real photo gallery pulled from the 4
-   events with photography provided; Jammy Jam (hasn't happened yet) gets
-   an honest labeled placeholder tile mixed in rather than hidden. Directly
+3. **Past events / proof section** — real photo gallery pulled from all 4
+   events. Directly
    answers the client's stated pain point about not showcasing past events.
 4. **Watch the Vibe** — the real KLP recap video embedded from YouTube.
 5. **As Seen In & Trusted By** — animated marquee of real press mentions
@@ -49,13 +48,12 @@ site (that's a future phase, contingent on them buying in).
 
 **Individual event pages** (`/events/<slug>`), one per signature event:
 
-1. Full-bleed photo hero with the event's real photography (or the brand
-   look with no photo, for Jammy Jam), name, theme, tagline, date badge.
+1. Full-bleed photo hero with the event's real photography, name, theme,
+   tagline, date badge.
 2. Details section — highlights, venue/address, date/time, age restriction,
    ticket CTA.
-3. Photo gallery — hero + 7 real photos in a mosaic grid, or the same
-   honest placeholder treatment for Jammy Jam.
-4. Cross-links to the other 4 signature nights.
+3. Photo gallery — hero + 7 real photos in a mosaic grid.
+4. Cross-links to the other 3 signature nights.
 5. Full `schema.org/Event` JSON-LD, per-page OpenGraph image.
 
 **Admin dashboard** (`/admin`, added 2026-09-17):
@@ -89,6 +87,46 @@ the most recent 20,000; leads are uncapped.
 Out of scope for v1: real ticket purchase flow, replacing the client's
 actual domains, CMS/admin for the client to edit content themselves.
 
+## Demo checkout flow (added 2026-09-17, on branch — not on the client's live link)
+
+A front-end-only purchase walkthrough, built to show the client what
+[the ticketing system](ticketing-system.md) would feel like before it's
+wired to Stripe/PayPal. **No payment is taken**; every page in the flow
+carries a "Demo checkout" banner.
+
+- **Tiers on each event page** (`#tickets`) — real tier names and prices
+  from KLP's live TicketFairy pages (see
+  [../context/data-sources.md](../context/data-sources.md)), with the
+  per-unit service fee from the chosen fee schedule shown next to each
+  price. Quantity steppers, a sticky total bar, "Continue to Checkout."
+- **`/checkout/<slug>`** — cart from the query string, buyer details,
+  per-ticket attendee names, promo code (`FLASH15`, one clearly-labeled
+  demo code mirroring KLP's real 15% flash sales; tickets only, not
+  tables), 10-minute hold countdown, and every payment method the real
+  build offers: Apple Pay / Google Pay / Link express buttons, then
+  Card / PayPal / Venmo / Cash App / Klarna tabs. Card fields are
+  visibly mock. "Pay" validates (name, email, age/refund checkbox),
+  shows a processing state, and issues the order.
+- **`/orders/<id>`** — confirmation with a real scannable QR per ticket
+  (encodes the ticket's `/t/<code>` URL), table reservations, receipt.
+- **`/t/<code>`** — the ticket page a buyer would get by email: big QR,
+  editable attendee name, "Simulate door scan" to show the single-use
+  state (greyed QR, "Scanned 9:41 PM").
+- **Storage:** `sessionStorage` only (`app/demo-orders.js`). Orders exist
+  in the tab that made them and vanish when it closes. This is the
+  seam the real Postgres + webhook pipeline replaces.
+- **AI/SEO win already banked:** with prices in the data file, each
+  on-sale event's JSON-LD now carries a real `AggregateOffer` (low/high
+  price, per-tier offers, availability) instead of a bare link-out.
+- **CTA change:** "See Tickets" → "Get Tickets", pointing at
+  `/events/<slug>#tickets` rather than out to TicketFairy. The tiers
+  section still links to the live TicketFairy page for honesty.
+
+Files: `app/tickets-data.js`, `app/demo-orders.js`,
+`app/components/{TicketTiers,CheckoutForm,OrderConfirmation,TicketView,QrCode,DemoBanner}.js`,
+`app/checkout/[slug]`, `app/orders/[id]`, `app/t/[code]`. One new
+dependency: `qrcode`.
+
 ## Photography
 
 Real KLP event photos, provided by the client from
@@ -96,9 +134,10 @@ Real KLP event photos, provided by the client from
 curated (8 photos per event, most recent year available) and resized/
 compressed for web from the original camera files (originals untouched).
 See [../context/data-sources.md](../context/data-sources.md) for exactly
-which folders/years were used and why. Jammy Jam has no photos yet — it
-hasn't happened (Sept 2026) — and correctly shows a labeled placeholder
-instead of a substitute image.
+which folders/years were used and why. (Jammy Jam, which had no photos,
+was cancelled and removed from the site on 2026-09-18 — the "no photos
+yet" placeholder code paths remain as guards for any future event added
+before its first year.)
 
 ## Content rules
 
@@ -115,7 +154,7 @@ instead of a substitute image.
 
 ## AI/SEO requirements (v1)
 
-- `schema.org/Event` JSON-LD for all 5 events.
+- `schema.org/Event` JSON-LD for all 4 events.
 - Semantic HTML, server-rendered (Next.js App Router — no client-only
   rendering for primary content).
 - `robots.txt`, `sitemap.xml`, `llms.txt`.

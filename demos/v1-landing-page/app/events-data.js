@@ -6,11 +6,10 @@
 // Photos in public/images/events/<slug>/ are real KLP event photography,
 // provided by the client from /Volumes/Elements/pitfal-solutions/photo_backup
 // (2026-08-22), resized/compressed for web from the original camera files.
-// Jammy Jam has no event photos yet — it hasn't happened (Sept 2026).
 //
 // poster.jpg per event is the real marketing poster pulled from
 // kevinlarsonpresents.com (2026-08-23) — official artwork, not candid
-// photography, so it's used for all 5 events including Jammy Jam.
+// photography.
 
 export const events = [
   {
@@ -146,28 +145,6 @@ export const events = [
       { file: "g7.jpg", alt: "Couple embracing in costume at Paranormal Palace" },
       { file: "g8.jpg", alt: "Performer in dramatic devil horns and red lighting" },
     ],
-  },
-  {
-    slug: "jammy-jam",
-    name: "Jammy Jam",
-    theme: "Denver's Grown-Up Pajama Party",
-    tagline: "Bedtime, turned into a celebration.",
-    venue: "The Church, Denver",
-    address: "Denver, CO",
-    date: "2026-09-19",
-    dateLabel: "Saturday, September 19, 2026",
-    time: "7:00 PM – 11:00 PM · After Party 11 PM–2 AM",
-    ageRestriction: "21+",
-    highlights: [
-      "Live performances, DJ & dance floor, immersive installations",
-      "VIP: four private areas including a rooftop deck",
-      "After Party with its own bar, dance floor & VIP Grotto",
-      "Matching pajamas encouraged — come cozy, come glamorous",
-    ],
-    ticketUrl: "https://jammyjam.net/",
-    hasPhotos: false,
-    posterAlt: "The Jammy Jam 2026 event poster — The Church, September 19",
-    gallery: [],
   },
 ];
 

@@ -20,9 +20,12 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-**Known gap:** Jammy Jam (Sept 2026) hasn't happened yet, so it correctly
-shows a labeled "photo coming soon" placeholder instead of a gallery.
-Update `events-data.js` (`hasPhotos`/`gallery`) once real photos exist.
+**Demo checkout (branch only, not yet on the live link):** open any
+on-sale event page (e.g. `/events/paranormal-palace`), scroll to
+**Tickets**, pick quantities, and walk through checkout → order
+confirmation → ticket page. No payment is taken; the promo code `FLASH15`
+is the one demo code. See the "Demo checkout flow" section of
+[../specs/v1-landing-page.md](../specs/v1-landing-page.md).
 
 ### Admin dashboard + lead capture
 

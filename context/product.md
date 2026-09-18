@@ -7,7 +7,7 @@ large, ticketed, themed "hotel takeover" parties — not weddings, not private
 bookings. Think: a whole hotel or venue rented out and transformed around a
 theme, with DJs/live music, roaming performers, multiple bars, and a VIP tier.
 
-## The five signature events (as of the current live site)
+## The four signature events (as of the current live site)
 
 | Event | Theme | Venue (recent/upcoming) | Date |
 |---|---|---|---|
@@ -15,7 +15,11 @@ theme, with DJs/live music, roaming performers, multiple bars, and a VIP tier.
 | Denver Mardi Gras | NOLA hotel takeover | DoubleTree by Hilton DTC | Feb 27 |
 | Denver Derby Day | Kentucky Derby watch party | The Ritz-Carlton Denver | May 1 |
 | Denver Halloween ("Paranormal Palace") | Costume contest, haunted decor | DoubleTree by Hilton DTC | Oct 31 |
-| Jammy Jam | Grown-up pajama party, women-focused | The Church (Denver) | Sept 19 |
+
+> **Jammy Jam (grown-up pajama party, The Church, Sept 19 2026) was
+> cancelled** — client instruction 2026-09-18. Removed from the site
+> entirely, not marked "past." Its microsite (jammyjam.net) still exists;
+> the domain-consolidation decision should cover it.
 
 Common ingredients across events: 21+, hotel/venue takeover so guests "ride
 the elevator home," multiple DJs and/or live music, roaming/theatrical

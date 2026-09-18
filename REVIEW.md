@@ -283,3 +283,133 @@ garbage beacons, honeypot dropped silently.
 
 Needs human: Vercel Storage → Upstash for Redis + `ADMIN_PASSWORD` env
 var, then redeploy. Also a decision on whether leads should notify anyone.
+
+### 2026-09-17 — Ticketing system: architecture + cost case (no code yet)
+
+Founder asked for an order-taking/payments/ticket-issuing system to
+replace third-party ticketing, with a cost comparison against Eventbrite.
+Planned only — nothing built. Outputs:
+[specs/ticketing-system.md](specs/ticketing-system.md),
+[context/ticketing-cost-comparison.md](context/ticketing-cost-comparison.md),
+[context/ticketing-fee-model.py](context/ticketing-fee-model.py).
+
+Decisions made with the founder (recorded in the spec): Stripe +
+PayPal/Venmo; QR scan *and* paper check at the door with reconciliation;
+simple referral links in v1; Vercel + Neon + Drizzle; ~10k tickets/yr;
+keep a buyer-paid fee and KLP keeps the margin; KLP team gets full
+admin; scope includes tables, promo codes, hotel-room add-on, merch.
+
+Non-obvious findings worth keeping:
+
+- **KLP is on TicketFairy, not Eventbrite.** Every microsite's "Buy
+  Tickets" goes to ticketfairy.com. The comparison covers both, but the
+  real incumbent is TicketFairy (10% on <$100 tickets, 9% on $100–$249,
+  buyer-paid, processing included).
+- **Real prices are now known** from TicketFairy's public event pages
+  and back out cleanly: GA $55, VIP $129, table $150, White Rose Gala
+  $100 — "$60.50 incl. fees" is exactly $55 + 10%. This doesn't change
+  working agreement #1 for the *demo* (v1 still links out), but the
+  spec puts real prices into schema.org `offers` once they live in our
+  DB.
+- **The buyer pays the fee today, not KLP.** So the honest pitch is
+  "you keep the ~$29k–$42k/yr that goes to the platform," not "we cut
+  your costs." The cost doc leads with this so nobody oversells it.
+- **Eventbrite is within ~5% of TicketFairy** on this ticket mix.
+  Switching platforms isn't the win; owning checkout is.
+- **Tap to Pay needs a native SDK** — can't do door sales from a PWA
+  with the phone's NFC. Options recorded (pay-by-QR or a Terminal
+  reader); left open.
+- **Hotel-room add-on** was chosen into scope by the founder against my
+  recommendation; kept in with fulfillment flagged as off-system and
+  listed as a client question rather than silently dropped.
+- Timing: Jammy Jam is in two days and Paranormal Palace is on sale —
+  first realistic cutover is Mardi Gras 2027.
+
+Checked for missing tools per the founder's instruction: no
+ticketing/payments skills exist in the library; the MCP registry has
+official Stripe, PayPal and Square connectors (not connected) and a
+Twilio plugin. Named in the spec as the things to connect when the
+build starts.
+
+Rates verified against provider pricing pages on 2026-09-17 — re-check
+before quoting to the client.
+
+### 2026-09-17 — Demo checkout flow built into v1 (front end only)
+
+Founder asked for an end-to-end purchase walkthrough in the current app,
+not wired to Stripe. Built on the `worktree-ticketing-architecture`
+branch so the client's live demo link is untouched until merged. Full
+description in the "Demo checkout flow" section of
+[specs/v1-landing-page.md](specs/v1-landing-page.md).
+
+Decisions confirmed with the founder before building: show **real
+TicketFairy-sourced prices** (not hidden, not invented) with the
+$3.50 + 3% fee line from the cost doc; point the existing "See Tickets"
+CTAs at the new flow rather than adding a parallel button.
+
+Non-obvious calls:
+
+- **Prices are real but perishable.** They're KLP's live flash-sale
+  prices as of today, backed out of TicketFairy's "incl. fees" figures.
+  `tickets-data.js` says so in its header with source URLs. Working
+  agreement #1 (no fabricated prices) is intact — these are sourced —
+  but they will drift, and the file must not be mistaken for a price
+  list KLP approved.
+- **Jammy Jam is shown as "sales closed"** rather than given sample
+  tiers: jammyjam.net was 503 and the event is in two days.
+- **Demo banner on every flow page** plus "no payment is taken" copy in
+  the tiers section, so the client can't mistake it for live commerce.
+- **Order state is `sessionStorage`**, deliberately — it's the exact
+  seam the real DB + webhook pipeline replaces, and it means a refresh
+  on the confirmation page works while nothing persists across tabs.
+- **JSON-LD upgraded as a side effect:** on-sale events now emit a real
+  `AggregateOffer` with per-tier prices (verified in-browser), which is
+  the AI/SEO payoff the roadmap's Phase 2 wanted.
+- Port 3000 was occupied by an unrelated project on this machine; ran
+  the dev server on 3111 for the browser check. Not a code change.
+
+Tested: full flow on desktop (Paranormal Palace: 2 GA + 1 VIP + 1 table,
+`FLASH15` applied, validation errors fire, processing state, confirmation
+with 3 QR codes + table, ticket page, simulated scan) and on a 375px
+phone viewport (Mardi Gras: 2 Royal Pass via Apple Pay button). No
+horizontal overflow at 375px on tiers, checkout, or confirmation.
+`npm run build` clean, 16 static pages + 2 dynamic routes.
+
+Needs human review before this goes near the client: whether the fee
+line should be visible in a demo at all (it was the founder's call, but
+it's also a business decision the client hasn't made), and whether to
+merge to `main` (which auto-deploys to the live link).
+
+### 2026-09-18 — Jammy Jam removed (event cancelled)
+
+Founder instruction: Jammy Jam was cancelled — remove it completely. Done
+on the same branch as the demo checkout.
+
+Removed: the event entry (`events-data.js`), its ticket-tier entry
+(`tickets-data.js`), the "Photo coming soon — Jammy Jam" tile in the
+homepage gallery, its poster image, its line in `llms.txt`, its mention in
+the site meta description. `/events/jammy-jam` now 404s; sitemap is down
+to 6 URLs.
+
+Ripple effects handled, not just the deletion:
+
+- **"Five signature nights" was real copy in three places** (hero
+  subtitle, events-grid eyebrow, llms.txt) — now "four." Worth
+  remembering that the count is baked into copy, not derived.
+- **The events grid orphaned a card.** `auto-fill, minmax(300px)` gave
+  3 + 1 at desktop with four events. Switched to fixed column counts:
+  4-across ≥ 961px, 2×2 to 601px, single column below. Verified 1 row at
+  1024, 2 rows at 768, 4 rows at 375, no horizontal overflow.
+- **Volume assumption in the ticketing spec** was "2,000 × 5 events" —
+  flagged for re-confirmation rather than silently rewritten as 2,500 × 4.
+- The `hasPhotos: false` / "sales closed" code paths are now unused but
+  left in place as guards for any future event added before its first
+  year. Small, and cheaper than re-adding them later.
+- Docs updated to four events (CLAUDE.md, product, data-sources,
+  attendees, ai-discoverability, v1 spec, ticketing spec, demos README,
+  ROADMAP). Historical REVIEW/ROADMAP entries about the placeholder are
+  left as written — that's what happened at the time.
+
+`npm run build` clean: 14 static pages + 2 dynamic routes (was 16 + 2).
+Jammy Jam's microsite (jammyjam.net) still exists and is the client's to
+retire — noted in product.md under the domain-consolidation decision.

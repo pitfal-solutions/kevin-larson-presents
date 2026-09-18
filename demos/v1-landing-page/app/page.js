@@ -8,6 +8,7 @@ import Membership from "./components/Membership";
 import Reviews from "./components/Reviews";
 import Footer from "./components/Footer";
 import { events } from "./events-data";
+import { eventOffersJsonLd } from "./tickets-data";
 import { SITE_URL } from "./site-config";
 
 function buildEventJsonLd(event) {
@@ -29,11 +30,7 @@ function buildEventJsonLd(event) {
       name: "Kevin Larson Presents",
       url: SITE_URL,
     },
-    offers: {
-      "@type": "Offer",
-      url: event.ticketUrl,
-      availability: "https://schema.org/InStock",
-    },
+    offers: eventOffersJsonLd(event, SITE_URL),
   };
 }
 

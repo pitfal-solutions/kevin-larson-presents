@@ -28,13 +28,8 @@ export default function EventDetails({ event }) {
             <dt>Age</dt>
             <dd>{event.ageRestriction}</dd>
           </div>
-          <a
-            href={event.ticketUrl}
-            className="btn btn--primary event-details__cta"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            See Tickets
+          <a href="#tickets" className="btn btn--primary event-details__cta">
+            Get Tickets
           </a>
         </dl>
       </div>

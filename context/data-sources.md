@@ -11,7 +11,7 @@ Pulled live on 2026-08-22 from URLs the client gave us directly:
 | denvermardigras.com | Denver Mardi Gras copy, venue, date, inclusions |
 | denverderby.org | Denver Derby Day copy, venue, date, inclusions |
 | denverhalloween.org | Paranormal Palace (Halloween) copy, venue, date, inclusions |
-| jammyjam.net | Jammy Jam copy, venue, date, inclusions |
+| jammyjam.net | Jammy Jam copy, venue, date, inclusions — **event cancelled, removed from the site 2026-09-18** |
 
 Confirmed from these sources: event names, themes, venues, dates/times, age
 restrictions, what's included at each tier (GA vs VIP), taglines, social
@@ -33,7 +33,7 @@ containing `Kevin_Larson` is fair game. Folders found (raw camera files,
 | Kevin_Larson_2025_Paranormal_Palace (111 photos, 3 subfolders) | Paranormal Palace | Yes — most recent |
 | Kevin_Larson_2023/2024 duplicates of the above | — | No — superseded by the most recent year |
 | Kevin_Larson_2024_Naughty_Ball (123 photos) | Not a current-site event | No — client confirmed leave it out; not one of the 5 signature nights |
-| (none) | Jammy Jam | No photos exist — event hasn't happened yet (Sept 2026) |
+| (none) | Jammy Jam | No photos — event was cancelled and removed from the site (2026-09-18) |
 
 For each of the 4 events with photos: hand-reviewed a ~12-photo sample
 spread across the shoot, picked 8 (1 hero + 7 gallery), resized to 1800px
@@ -51,7 +51,8 @@ More real content pulled from kevinlarsonpresents.com and related sources:
 - **Event posters.** Each event's real marketing poster (e.g.
   `.../wp-content/uploads/2026/07/white-rose-gala-2027.jpg`) pulled from the
   live homepage's linked images — official artwork, not candid photography,
-  so used for all 5 events including Jammy Jam. Retrieved via an in-browser
+  so used for all events (Jammy Jam's was deleted when the event was
+  cancelled, 2026-09-18). Retrieved via an in-browser
   canvas fetch (curl was blocked by the CDN's referer check) and resized to
   500px wide.
 - **"Meet The Visionary"** copy — real text from the homepage section of
@@ -86,13 +87,15 @@ More real content pulled from kevinlarsonpresents.com and related sources:
 
 ## What's still missing (treat as `null`, never invented)
 
-- **Exact ticket prices.** None of the live sites publish numeric pricing —
-  they link out to Ticketfairy/Eventbrite. v1 demo copy should say "See
-  pricing" / link out, not invent a number.
-- **Jammy Jam event photography.** Honest placeholder stays in its gallery
-  until the event happens — see [../specs/v1-landing-page.md](../specs/v1-landing-page.md).
-  (It does now have a real marketing poster, which is a different thing —
-  see above.)
+- ~~**Exact ticket prices.**~~ **Resolved 2026-09-17.** The microsites
+  don't publish prices, but every "Buy Tickets" link goes to a public
+  TicketFairy event page that does. Pulled tier names and "incl. fees"
+  prices for all 4 remaining events and backed out TicketFairy's buyer-paid fee
+  (10% under $100, 9% from $100–$249.99 — every price divides out to a
+  round base, e.g. GA "$60.50 incl. fees" = $55.00 + 10%). Recorded with
+  source URLs in `demos/v1-landing-page/app/tickets-data.js`. (Jammy Jam
+  was unverifiable — jammyjam.net returned 503 — and was then cancelled and
+  removed the next day.) These are flash-sale prices and will drift.
 
 ## Ground rule
 

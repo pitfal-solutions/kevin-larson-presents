@@ -71,7 +71,7 @@ Full context: [`/context`](context/). Personas: [`/customers`](customers/).
 ## Current demo
 
 `demos/v1-landing-page/` — a Next.js single-page site built from real KLP
-copy/brand data (dark/gold theme, serif headlines) covering all 5 signature
+copy/brand data (dark/gold theme, serif headlines) covering all 4 signature
 events, with structured data for AI/SEO. See
 [specs/v1-landing-page.md](specs/v1-landing-page.md) for the full spec and
 [demos/README.md](demos/README.md) for how to run it.

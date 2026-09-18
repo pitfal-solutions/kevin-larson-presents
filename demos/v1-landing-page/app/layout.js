@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 const description =
-  "Kevin Larson Presents produces Denver's signature themed hotel-takeover events — White Rose Gala, Denver Mardi Gras, Denver Derby Day, Paranormal Palace, and Jammy Jam.";
+  "Kevin Larson Presents produces Denver's signature themed hotel-takeover events — White Rose Gala, Denver Mardi Gras, Denver Derby Day, and Paranormal Palace.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),

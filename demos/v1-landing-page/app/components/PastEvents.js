@@ -1,8 +1,6 @@
 import { events } from "../events-data";
 
 // Real KLP event photography — see /context/data-sources.md for provenance.
-// Jammy Jam has no photos yet (hasn't happened) and gets an honest
-// placeholder tile instead, mixed in with the real ones rather than hidden.
 const PHOTOS = events
   .filter((e) => e.hasPhotos)
   .flatMap((e) =>
@@ -31,12 +29,6 @@ export default function PastEvents() {
             <figcaption>{p.event}</figcaption>
           </figure>
         ))}
-        <div className="gallery-tile gallery-tile--placeholder">
-          <div className="gallery-tile__placeholder" aria-hidden="true">
-            <span className="gallery-tile__icon">📷</span>
-          </div>
-          <p className="gallery-tile__label">Photo coming soon — Jammy Jam</p>
-        </div>
       </div>
     </section>
   );

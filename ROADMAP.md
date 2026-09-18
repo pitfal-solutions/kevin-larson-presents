@@ -29,7 +29,6 @@ response.
 
 ## Phase 2 — Real content + AI/SEO structure
 
-- Swap in Jammy Jam photos once the event happens.
 - Decide the domain-consolidation strategy (6 domains → 1, or keep
   microsites and cross-link) — this is a client decision, not ours to
   assume. See [context/ai-discoverability.md](context/ai-discoverability.md).
@@ -81,6 +80,28 @@ answered before the client comes back wanting to move forward.
 - Only if the client approves the demo direction. Scope TBD with them:
   likely a real CMS/admin so KLP can update events themselves without a
   developer, migration off WordPress, DNS cutover plan.
+
+## Phase 3b — Ticketing & orders system (architecture done 2026-09-17, build not started)
+
+Own the checkout instead of linking out to TicketFairy: Stripe (card,
+Apple Pay, Google Pay, Link, Cash App, Klarna/Affirm) + PayPal/Venmo,
+QR tickets by email, phone scanner + paper manifest at the door, admin
+for the KLP team, promo codes, simple referral links, tables/add-ons.
+Full design: [specs/ticketing-system.md](specs/ticketing-system.md).
+Business case: [context/ticketing-cost-comparison.md](context/ticketing-cost-comparison.md)
+— buyers hand ~$70k/yr in fees to TicketFairy at ~10k tickets/yr; raw
+processing on our system is ~$27k; KLP keeps the difference.
+
+- Delivery phases A (checkout core) → B (admin + door) → C (PayPal,
+  referrals, tables/add-ons) → D (wallet passes, door sales, SMS) — see
+  the spec.
+- **Cutover target: Denver Mardi Gras (Feb 27 2027).** Paranormal
+  Palace is already on sale on TicketFairy and must not be touched.
+  (Jammy Jam was cancelled 2026-09-18 and removed from the site.)
+- Blocked on the client for: tax treatment, refund policy text, hotel
+  room add-on decision, Stripe/PayPal account creation, TicketFairy
+  attendee export. Listed at the end of the spec.
+- Build price and support retainer come from the pricing plan above.
 
 ## Phase 4 — Marketing upsell (future, not committed)
 

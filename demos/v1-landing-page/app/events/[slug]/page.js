@@ -3,10 +3,12 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import EventPageHero from "../../components/EventPageHero";
 import EventDetails from "../../components/EventDetails";
+import TicketTiers from "../../components/TicketTiers";
 import EventGallery from "../../components/EventGallery";
 import MoreEvents from "../../components/MoreEvents";
 import { events, getEvent } from "../../events-data";
 import { SITE_URL } from "../../site-config";
+import { eventOffersJsonLd } from "../../tickets-data";
 
 export function generateStaticParams() {
   return events.map((e) => ({ slug: e.slug }));
@@ -61,11 +63,7 @@ function eventJsonLd(event) {
       name: "Kevin Larson Presents",
       url: SITE_URL,
     },
-    offers: {
-      "@type": "Offer",
-      url: event.ticketUrl,
-      availability: "https://schema.org/InStock",
-    },
+    offers: eventOffersJsonLd(event, SITE_URL),
   };
 }
 
@@ -85,6 +83,7 @@ export default async function EventPage({ params }) {
       <main>
         <EventPageHero event={event} />
         <EventDetails event={event} />
+        <TicketTiers event={event} />
         <EventGallery event={event} />
         <MoreEvents excludeSlug={event.slug} />
       </main>

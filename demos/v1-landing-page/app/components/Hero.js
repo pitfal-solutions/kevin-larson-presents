@@ -27,7 +27,7 @@ export default function Hero() {
           in Denver for 30 Years
         </h1>
         <p className="hero__subtitle">
-          Five signature nights. One legendary producer. Themed hotel
+          Four signature nights. One legendary producer. Themed hotel
           takeovers built for people who want a night they'll actually
           remember.
         </p>

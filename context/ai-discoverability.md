@@ -36,7 +36,7 @@ a later phase.
 
 ## What v1 demo actually implements
 
-- JSON-LD `Event` blocks for all 5 signature events.
+- JSON-LD `Event` blocks for all 4 signature events.
 - Semantic HTML, server-rendered (Next.js App Router).
 - `robots.txt` + `sitemap.xml`.
 - `llms.txt` summarizing the business + events in plain text.

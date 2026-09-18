@@ -1,6 +1,6 @@
 # Kevin Larson Presents
 
-> Denver events producer running five signature annual themed hotel-takeover
+> Denver events producer running four signature annual themed hotel-takeover
 > parties, in business for 30 years. Live Passionately, Experience
 > Extraordinary.
 
@@ -18,8 +18,6 @@ details and event photography, plus its own external ticket link.
 - Paranormal Palace — Halloween takeover with a $2,500 costume contest,
   DoubleTree by Hilton DTC, October 31. Details: /events/paranormal-palace ·
   Tickets: https://denverhalloween.org/
-- Jammy Jam — grown-up pajama party, The Church, Denver, September 19.
-  Details: /events/jammy-jam · Tickets: https://jammyjam.net/
 
 All events are 21+. Most include a paid VIP tier with open bar and private
 areas. Ticket prices are not published — see each event's ticket link for

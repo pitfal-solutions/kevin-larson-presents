@@ -28,13 +28,8 @@ export default function EventPageHero({ event }) {
         <h1 className="event-hero__title">{event.name}</h1>
         <p className="event-hero__tagline">&ldquo;{event.tagline}&rdquo;</p>
         <div className="event-hero__actions">
-          <a
-            href={event.ticketUrl}
-            className="btn btn--primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            See Tickets
+          <a href="#tickets" className="btn btn--primary">
+            Get Tickets
           </a>
           <a href="#gallery" className="btn btn--ghost">
             {event.hasPhotos ? "See the Night" : "Event Details"}

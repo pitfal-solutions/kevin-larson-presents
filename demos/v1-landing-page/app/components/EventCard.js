@@ -39,14 +39,9 @@ export default function EventCard({ event }) {
           <Link href={`/events/${event.slug}`} className="btn btn--ghost btn--small">
             See the Night
           </Link>
-          <a
-            href={event.ticketUrl}
-            className="btn btn--primary btn--small"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            See Tickets
-          </a>
+          <Link href={`/events/${event.slug}#tickets`} className="btn btn--primary btn--small">
+            Get Tickets
+          </Link>
         </div>
       </div>
     </article>
