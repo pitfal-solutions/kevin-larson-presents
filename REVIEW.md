@@ -413,3 +413,24 @@ Ripple effects handled, not just the deletion:
 `npm run build` clean: 14 static pages + 2 dynamic routes (was 16 + 2).
 Jammy Jam's microsite (jammyjam.net) still exists and is the client's to
 retire — noted in product.md under the domain-consolidation decision.
+
+### 2026-09-18 — Hotfix: checkout CSS broken on the live link after merge
+
+Founder reported the tickets section on the live site looked unstyled.
+Cause: when merging `origin/main` (the admin-dashboard commit) into the
+checkout branch, git split main's appended admin CSS into two conflict
+hunks, and my "keep both sides" resolution interleaved the halves — main's
+block was cut mid-rule (`.admin__login-card input {` never closed), so
+browsers dropped every rule after it, including the entire checkout
+stylesheet. Brace count was 385 open / 383 close.
+
+Fix: rebuilt `globals.css` deterministically as main's file + the
+events-grid change + the checkout block appended whole. Braces balanced,
+nesting checked, `next build` clean.
+
+Lesson, recorded so it doesn't repeat: **an HTTP 200 smoke test is not a
+render check.** I verified the merged build with curl status codes only.
+The pre-ship checklist says "checked in the browser" — that has to happen
+on the *merged* build, not just the pre-merge branch. Also: never resolve
+CSS/append-style conflicts with a regex join across multiple hunks; take
+one side's file whole and re-apply the other side's change.
