@@ -1,6 +1,7 @@
 import { Libre_Baskerville, Poppins } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "./site-config";
+import Analytics from "./components/Analytics";
 
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
@@ -46,7 +47,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${libreBaskerville.variable} ${poppins.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

@@ -236,3 +236,50 @@ done/sent, pre-ship checklist checked off, and a new "Pricing plan for
 website projects" item added — not a coding task, but flagged so it gets
 answered before a prospective customer says yes and the client needs
 real numbers on the spot.
+
+### 2026-09-17 — Admin dashboard + live lead capture
+
+Owner asked for an admin page that tracks traffic/clicks and lead metadata.
+This is the first backend in the demo, so it crossed working agreement #4
+(no auth/database) — flagged up front, owner chose: Upstash Redis via
+Vercel, shared-password auth, and wiring the Members Club form live.
+
+Decisions:
+
+- **First-party tracking, not GA.** A ~100-line beacon (`Analytics.js`)
+  posting to `/api/track` gives us exactly the questions the owner asked
+  (which CTAs get clicked, where visitors come from, what a lead looked at)
+  without a third-party script, consent banner, or IP storage. Visitor id
+  is a random `localStorage` value; country comes from Vercel's edge
+  header. Bots are filtered by user-agent server-side.
+- **"Last non-direct touch" attribution.** First draft was pure
+  first-touch, which under testing mis-credited a UTM-tagged visit to
+  "direct" because the browser had already visited the bare URL once.
+  Switched to: capture referrer/UTM at session start; if that session is
+  direct, inherit the visitor's first-touch. Leads carry the same block.
+- **Pluggable store, file backend for dev.** `store.js` picks Redis when
+  the Upstash env vars exist, else a gitignored JSON file. Means `npm run
+  dev` works with zero setup and the admin page can be reviewed today.
+  Raw events capped at 20k (newest kept); leads uncapped. Aggregation is
+  in-memory on the admin page — fine at demo-site volume, would need
+  daily rollups if this ever saw real traffic.
+- **Auth is deliberately minimal.** One `ADMIN_PASSWORD`, HMAC-signed
+  expiry cookie scoped to `/admin`, timing-safe compare, 7-day TTL. No
+  accounts. If the password isn't set the page is locked, not open.
+- **Dev-only bug caught by looking at the data, not the UI:** every
+  pageview was recorded twice (React strict mode double-runs effects).
+  Added a same-path-within-1s guard in the beacon rather than relying on
+  prod behaving differently.
+- **Members Club form is now real.** Honeypot field for spam, server-side
+  email validation, success state replaces the form. The "Demo only"
+  note is gone. Client should know: signups now land somewhere they need
+  to check (the dashboard / CSV) — nothing emails them yet.
+
+Tested: build clean; full flow in the browser at desktop and 375px (UTM
+landing → event page → ticket click → About → signup → login (wrong then
+right password) → dashboard for each range → CSV → sign out); curl
+checks for 401 on the CSV without a session, 400 on a bad email, 204 on
+garbage beacons, honeypot dropped silently.
+
+Needs human: Vercel Storage → Upstash for Redis + `ADMIN_PASSWORD` env
+var, then redeploy. Also a decision on whether leads should notify anyone.

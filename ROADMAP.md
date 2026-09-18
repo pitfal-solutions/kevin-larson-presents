@@ -36,6 +36,27 @@ response.
 - Add a machine-readable events feed (`/events.json`), confirm ticket
   pricing can be shown directly (currently only linked out).
 
+## Phase 2.5 — Admin dashboard + lead capture (built 2026-09-17, needs Vercel setup)
+
+Owner-requested, ahead of the client's Phase 3 decision: a password-protected
+`/admin` page tracking page views, visitors, CTA clicks, traffic sources /
+UTM campaigns, devices, and Members Club leads with their metadata (source,
+campaign, landing page, event pages viewed). The Members Club form is now
+live. See [specs/v1-landing-page.md](specs/v1-landing-page.md) for what it
+shows and [demos/README.md](demos/README.md) for setup.
+
+This is the first piece of backend in the demo — it deliberately relaxes
+working agreement #4 (no auth/database) because the owner asked for it.
+Kept minimal: one shared password, one Redis list per data type, no
+accounts.
+
+- [ ] **Vercel setup (human):** add Upstash for Redis from the Storage tab
+      and set `ADMIN_PASSWORD` in Environment Variables, then redeploy.
+      Until then the live site's dashboard is empty.
+- [ ] Decide whether leads should also be forwarded somewhere (email
+      notification, Mailchimp, etc.) — currently they only live in the
+      dashboard + CSV export.
+
 ## Pricing plan for website projects (not started, needed before Phase 3)
 
 Client wants real numbers ready before a prospective customer says yes —
@@ -68,9 +89,10 @@ answered before the client comes back wanting to move forward.
 
 ---
 
-**Current phase: 1 (done, demo sent to client).** Live at
-https://v1-landing-page-mu.vercel.app — see
-[demos/v1-landing-page/](demos/README.md). Next concrete steps: the
-client's response to the demo, and working out the
+**Current phase: 2.5 (admin dashboard built, awaiting Vercel setup).**
+Live at https://v1-landing-page-mu.vercel.app — see
+[demos/v1-landing-page/](demos/README.md). Next concrete steps: provision
+Upstash + `ADMIN_PASSWORD` on Vercel so the live dashboard collects data,
+the client's response to the demo, and working out the
 [pricing plan](#pricing-plan-for-website-projects-not-started-needed-before-phase-3)
 before that conversation needs it.

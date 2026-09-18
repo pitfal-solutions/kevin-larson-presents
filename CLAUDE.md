@@ -100,8 +100,11 @@ flagging it to the user first:
    HTML, `robots.txt`, `sitemap.xml`, and `llms.txt` from v1. See
    [context/ai-discoverability.md](context/ai-discoverability.md).
 4. **Keep it simple by default.** This is a demo to win a client, not a
-   production CMS. One page, no auth, no database, no real payment/email
-   backend until a roadmap phase actually calls for it.
+   production CMS. No real payment backend or CMS until a roadmap phase
+   actually calls for it. The one exception so far (owner-requested,
+   2026-09-17): a shared-password `/admin` dashboard for traffic + leads,
+   backed by Upstash Redis — see `demos/v1-landing-page/app/lib/store.js`.
+   Don't grow that into accounts/roles without asking.
 5. **Data honesty.** Placeholder images are clearly labeled as placeholders,
    never presented as real event photography. Missing data (pricing, etc.)
    stays missing, never backfilled with a plausible-looking value.

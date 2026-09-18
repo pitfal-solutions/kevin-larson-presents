@@ -28,8 +28,8 @@ site (that's a future phase, contingent on them buying in).
 5. **As Seen In & Trusted By** — animated marquee of real press mentions
    and real client names pulled from the live site's credibility carousel.
 6. **Membership / newsletter signup** — matches the "Members Club" concept
-   already on the live sites (visual only in the demo — no real email
-   capture/backend in v1).
+   already on the live sites. Live since 2026-09-17: submits to
+   `/api/leads` and shows up in the admin dashboard (see below).
 7. **What Denver Is Saying** — animated marquee of real Google reviews
    (name, quote, aggregate rating), linking out to Google for the full set.
 8. **Footer** — social links (Facebook, TikTok, Instagram, YouTube — real,
@@ -58,9 +58,36 @@ site (that's a future phase, contingent on them buying in).
 4. Cross-links to the other 4 signature nights.
 5. Full `schema.org/Event` JSON-LD, per-page OpenGraph image.
 
-Out of scope for v1: real ticket purchase flow, real email capture backend,
-replacing the client's actual domains, CMS/admin for the client to edit
-content themselves.
+**Admin dashboard** (`/admin`, added 2026-09-17):
+
+Password-protected (`ADMIN_PASSWORD` env var, signed httpOnly cookie,
+`/admin` is `noindex` and disallowed in `robots.txt`). Shows, for a
+selectable 7/30/90-day/all-time range:
+
+1. Totals — page views, unique visitors, sessions, CTA clicks, leads.
+2. Page views by day (bar chart), views by page, clicks by CTA/target.
+3. Sources for new visitors (referrer host, or UTM source for tagged
+   links), UTM campaigns, device split, country (Vercel edge header —
+   blank on local dev).
+4. Leads table — email, signup time, source, campaign, landing page,
+   which event pages they viewed that session, device — plus a CSV export
+   of all leads.
+
+Tracking is first-party only (`app/components/Analytics.js`): a random
+visitor id in `localStorage`, session id in `sessionStorage`, no third-party
+scripts, no IP addresses stored. Page views fire on every route change;
+clicks are recorded for buttons, nav links, outbound links, and anything
+with `data-track`. Attribution is "last non-direct touch": referrer/UTM
+captured at session start, falling back to the visitor's first-touch
+attribution when the session arrived direct.
+
+Storage (`app/lib/store.js`) is Upstash Redis when its env vars are
+present (Vercel's Upstash integration sets them), otherwise a gitignored
+local JSON file so `npm run dev` needs no setup. Raw events are capped at
+the most recent 20,000; leads are uncapped.
+
+Out of scope for v1: real ticket purchase flow, replacing the client's
+actual domains, CMS/admin for the client to edit content themselves.
 
 ## Photography
 
