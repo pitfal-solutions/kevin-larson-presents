@@ -434,3 +434,26 @@ The pre-ship checklist says "checked in the browser" — that has to happen
 on the *merged* build, not just the pre-merge branch. Also: never resolve
 CSS/append-style conflicts with a regex join across multiple hunks; take
 one side's file whole and re-apply the other side's change.
+
+### 2026-09-18 — Follow-up: the CSS hotfix deployed but browsers kept the broken file
+
+After pushing the stylesheet fix, the live page still rendered unstyled in
+a browser that had seen the broken deploy. Diagnosis in-page: the document
+was using `/_next/static/immutable/chunks/0jxdua0iflzj-.css` with 289 rules
+and no `.tier`; a `cache: 'reload'` fetch of the *same URL* returned the
+fixed file. So the chunk filename is not content-hashed in this Next
+build, yet Vercel serves `/_next/static` with
+`max-age=31536000, immutable`. Any visitor who loaded the site during the
+~1-hour broken window (potentially the client) would keep the broken CSS
+until a hard refresh.
+
+Fix: `deploymentId` in `next.config.mjs`, fed from `VERCEL_DEPLOYMENT_ID`
+(with git-SHA and `NEXT_DEPLOYMENT_ID` fallbacks). Next appends
+`?dpl=<id>` to every static asset URL, so each deploy busts the cache.
+Verified locally that a build with the env var set emits `?dpl=` on the
+CSS link. This is a one-line config that should have been there from
+Phase 1 — noting it as a default for any future Next project in this
+workspace.
+
+Anyone who saw the broken page before this lands needs a hard refresh
+once (Cmd+Shift+R); after this deploy, no one will need to again.
